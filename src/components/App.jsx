@@ -65,17 +65,6 @@ export class App extends Component {
   componentDidMount() {
     this.getContacts();
   }
-  // async componentDidMount() {
-  //   const contactValue = await this.addContact;
-  //   const save = (key, contactValue) => {
-  //     try {
-  //       const contactStorage = JSON.stringify(contactValue);
-  //       localStorage.setItem(key, contactStorage);
-  //     } catch (error) {
-  //       console.error('Set state error: ', error.message);
-  //     }
-  //   };
-  // }
 
   render() {
     return (
