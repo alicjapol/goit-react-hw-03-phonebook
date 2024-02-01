@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
-
 export class App extends Component {
   static propTypes = {
     contacts: PropTypes.arrayOf(
@@ -17,12 +16,7 @@ export class App extends Component {
   };
 
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
 
@@ -40,13 +34,48 @@ export class App extends Component {
   removeContact = id => {
     const newList = this.state.contacts.filter(contact => contact.id !== id);
     this.setState({ contacts: newList });
+    this.saveContacts(newList);
   };
 
   addContact = newContact => {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
+    this.saveContacts([...this.state.contacts, newContact]);
   };
+
+  getContacts = () => {
+    try {
+      const storedContacts = JSON.parse(localStorage.getItem('contacts'));
+      if (storedContacts) {
+        this.setState({ contacts: storedContacts });
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  saveContacts = contacts => {
+    try {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    } catch (error) {
+      console.error('Set state error: ', error.message);
+    }
+  };
+  componentDidMount() {
+    this.getContacts();
+  }
+  // async componentDidMount() {
+  //   const contactValue = await this.addContact;
+  //   const save = (key, contactValue) => {
+  //     try {
+  //       const contactStorage = JSON.stringify(contactValue);
+  //       localStorage.setItem(key, contactStorage);
+  //     } catch (error) {
+  //       console.error('Set state error: ', error.message);
+  //     }
+  //   };
+  // }
 
   render() {
     return (

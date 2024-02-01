@@ -4,16 +4,16 @@ import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 
 export default class ContactForm extends Component {
-  static propTypes = {
-    onAddContact: PropTypes.func,
-    contacts: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        name: PropTypes.string,
-        number: PropTypes.string,
-      })
-    ),
-  };
+  // static propTypes = {
+  //   onAddContact: PropTypes.func,
+  //   contacts: PropTypes.arrayOf(
+  //     PropTypes.shape({
+  //       id: PropTypes.string,
+  //       name: PropTypes.string,
+  //       number: PropTypes.string,
+  //     })
+  //   ),
+  // };
 
   state = {
     name: '',
