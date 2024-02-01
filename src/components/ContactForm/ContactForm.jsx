@@ -1,8 +1,6 @@
 // ContactForm.jsx
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
-
 export default class ContactForm extends Component {
   state = {
     name: '',
