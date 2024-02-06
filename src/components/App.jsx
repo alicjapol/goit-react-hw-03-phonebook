@@ -8,7 +8,7 @@ export default function App () {
   const [filter, setFilter] = useState('');
 
   const handleChange = evt => {
-    const { name, value } = evt.target;
+    const { value } = evt.target;
     setFilter(value);
   };
 
